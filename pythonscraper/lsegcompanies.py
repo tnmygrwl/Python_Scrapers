@@ -6,6 +6,7 @@ Created on Wed Aug 15 19:44:37 2018
 @author: kerry
 """
 
+
 # import libraries
 import urllib.request
 from bs4 import BeautifulSoup
@@ -23,9 +24,7 @@ results = soup.find_all('div', attrs={'class': 'tabular-data-panel'})
 #print('Number of results', len(results))
 
 
-rows = []
-rows.append(['Company Name', 'Website', 'Sector', 'Region', 'Revenue Band'])
-
+rows = [['Company Name', 'Website', 'Sector', 'Region', 'Revenue Band']]
 for result in results:
     data = result.find_all('span', attrs={'class': 'panel-row-text'})
     companyName = data[0].getText()
@@ -33,7 +32,7 @@ for result in results:
     sector = data[2].getText()
     region = data[3].getText()
     revenueBand = data[4].getText()
-    
+
     rows.append([companyName, website, sector, region, revenueBand])
 
 # Create csv and write rows to output file
